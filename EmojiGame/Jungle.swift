@@ -18,8 +18,14 @@ class Jungle: SKScene, SKPhysicsContactDelegate {
     
     var scrollLayer: SKNode!
     
-    let fixedDelta: CFTimeInterval = 6.0/60.0 /* 60 FPS */
+    var SKSpriteNode_1: SKSpriteNode!
+    
+    let fixedDelta: CFTimeInterval = 1.0/60.0 /* 60 FPS */
     let scrollSpeed: CGFloat = 160
+    
+    var levelNode: SKNode!
+    
+    var cameraTarget: SKNode?
     
     override func didMoveToView(view: SKView) {
         
@@ -29,6 +35,15 @@ class Jungle: SKScene, SKPhysicsContactDelegate {
         
         /* Set reference to scroll layer node */
         scrollLayer = self.childNodeWithName("scrollLayer")
+        
+        SKSpriteNode_1 = self.childNodeWithName("//SKSpriteNode_1") as! SKSpriteNode
+        
+        levelNode = childNodeWithName("//levelNode")
+        
+        /* Load Level 1 */
+        let resourcePath = NSBundle.mainBundle().pathForResource("MonkeyTree1", ofType: "sks")
+        let newLevel = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
+        levelNode.addChild(newLevel)
 
 //        /* Setup your scene here */
 //        
@@ -65,45 +80,71 @@ class Jungle: SKScene, SKPhysicsContactDelegate {
         for touch in touches {
             
             /* Grab scene position of touch */
-            let location = touch.locationInView(view)
+            let location = touch.locationInNode(self)
             
-            if location.x > size.width / 2 {
+            if location.x > mainCharacter.parent?.convertPoint(mainCharacter.position, toNode: self).x {
                 
                 mainCharacter.physicsBody?.applyForce(CGVectorMake(20, 0))
             } else {
                 
                 mainCharacter.physicsBody?.applyForce(CGVectorMake(-20, 0))
             }
+            
+            if location.y > size.height / 2 {
+                
+                mainCharacter.physicsBody?.applyForce(CGVectorMake(0, 20))
+            }
+            
+            cameraTarget = mainCharacter
         }
     }
     
     override func update(currentTime: NSTimeInterval) {
         
-        scrollJungle()
-    }
-    
-    func scrollJungle() {
-        
-        /* Scroll World */
-        //scrollLayer.position.x -= scrollSpeed * CGFloat(fixedDelta)
-        
-        /* Loop through scroll layer nodes */
-        for ground in scrollLayer.children as! [SKSpriteNode] {
+        /* Check we have a valid camera target to follow */
+        if let cameraTarget = cameraTarget {
             
-            /* Get ground node position, convert node position to scene space */
-            let groundPosition = scrollLayer.convertPoint(ground.position, toNode: self)
+            /* Set camera position to follow target horizontally, keep vertical locked */
+            camera?.position = CGPoint(x:cameraTarget.position.x+50, y:camera!.position.y)
             
-            /* Check if ground sprite has left the scene */
-            if groundPosition.x <= -ground.size.width / 2 {
-                
-                /* Reposition ground sprite to the second starting position */
-                let newPosition = CGPointMake( (self.size.width / 2) + ground.size.width, groundPosition.y)
-                
-                /* Convert new node position back to scroll layer space */
-                ground.position = self.convertPoint(newPosition, toNode: scrollLayer)
-            }
+            /* Clamp camera scrolling to our visible scene area only */
+            camera?.position.x.clamp(283, 1200)
+            
         }
+        print(mainCharacter.physicsBody?.velocity.length())
         
+        if mainCharacter.physicsBody?.velocity.length() > 25 {
+            
+            mainCharacter.texture = SKTexture(imageNamed: "rollingFaceEmojiGame")
+            
+        } else {
+            
+            mainCharacter.texture = SKTexture(imageNamed: "mainCharacterEmojiGame")
+        }
     }
     
+//    func scrollJungle() {
+//        
+//        /* Scroll World */
+//        //scrollLayer.position.x -= scrollSpeed * CGFloat(fixedDelta)
+//        
+//        /* Loop through scroll layer nodes */
+//        for ground in scrollLayer.children as! [SKSpriteNode] {
+//            
+//            /* Get ground node position, cwionvert node position to scene space */
+//            let groundPosition = scrollLayer.convertPoint(ground.position, toNode: self)
+//            
+//            /* Check if ground sprite has left the scene */
+//            if (camera?.position.x)! - self.view!.frame.width / 2 >= ground.size.width {
+//                
+//                print("hey")
+//                
+//                /* Reposition ground sprite to the second starting position */
+//                let newPosition = CGPointMake( (self.size.width / 2) + ground.size.width * 2, groundPosition.y)
+//                
+//                /* Convert new node position back to scroll layer space */
+//                ground.position = self.convertPoint(newPosition, toNode: scrollLayer)
+//            }
+//        }
+//    }
 }

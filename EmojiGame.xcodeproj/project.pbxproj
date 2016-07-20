@@ -35,6 +35,11 @@
 		CE3DD9171D386B5D0009F3B0 /* ground_EmojiGame.png in Resources */ = {isa = PBXBuildFile; fileRef = CE3DD9141D386B5D0009F3B0 /* ground_EmojiGame.png */; };
 		CE3DD9181D386B5D0009F3B0 /* mainCharacterEmojiGame.png in Resources */ = {isa = PBXBuildFile; fileRef = CE3DD9151D386B5D0009F3B0 /* mainCharacterEmojiGame.png */; };
 		CE9571F11D3873390018442B /* Jungle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9571F01D3873390018442B /* Jungle.swift */; };
+		CEE848941D3E9C4600FF800E /* rollingFaceEmojiGame.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE848931D3E9C4600FF800E /* rollingFaceEmojiGame.png */; };
+		CEE848961D3EC61B00FF800E /* Monkey.sks in Resources */ = {isa = PBXBuildFile; fileRef = CEE848951D3EC61B00FF800E /* Monkey.sks */; };
+		CEE848981D3ECD8900FF800E /* monkeyFaceEmojiGame.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE848971D3ECD8900FF800E /* monkeyFaceEmojiGame.png */; };
+		CEE8489A1D3ED33200FF800E /* MonkeyTree1.sks in Resources */ = {isa = PBXBuildFile; fileRef = CEE848991D3ED33200FF800E /* MonkeyTree1.sks */; };
+		CEE8489E1D3EE85500FF800E /* MonkeyTree1.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE8489D1D3EE85500FF800E /* MonkeyTree1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +94,11 @@
 		CE3DD9141D386B5D0009F3B0 /* ground_EmojiGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ground_EmojiGame.png; sourceTree = "<group>"; };
 		CE3DD9151D386B5D0009F3B0 /* mainCharacterEmojiGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainCharacterEmojiGame.png; sourceTree = "<group>"; };
 		CE9571F01D3873390018442B /* Jungle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jungle.swift; sourceTree = "<group>"; };
+		CEE848931D3E9C4600FF800E /* rollingFaceEmojiGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rollingFaceEmojiGame.png; sourceTree = "<group>"; };
+		CEE848951D3EC61B00FF800E /* Monkey.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Monkey.sks; sourceTree = "<group>"; };
+		CEE848971D3ECD8900FF800E /* monkeyFaceEmojiGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monkeyFaceEmojiGame.png; sourceTree = "<group>"; };
+		CEE848991D3ED33200FF800E /* MonkeyTree1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MonkeyTree1.sks; sourceTree = "<group>"; };
+		CEE8489D1D3EE85500FF800E /* MonkeyTree1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MonkeyTree1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				CE25EF9F1D36C17D00F2EEA4 /* MainCharacter.sks */,
+				CEE848951D3EC61B00FF800E /* Monkey.sks */,
 			);
 			name = Characters;
 			sourceTree = "<group>";
@@ -206,6 +217,7 @@
 			children = (
 				CE25EFD91D384A3500F2EEA4 /* Jungle.sks */,
 				CE9571F01D3873390018442B /* Jungle.swift */,
+				CEE848991D3ED33200FF800E /* MonkeyTree1.sks */,
 			);
 			name = Levels;
 			sourceTree = "<group>";
@@ -213,8 +225,11 @@
 		CE3DD9121D386B5D0009F3B0 /* assestsEmojiGameNew2 */ = {
 			isa = PBXGroup;
 			children = (
+				CEE848971D3ECD8900FF800E /* monkeyFaceEmojiGame.png */,
+				CEE8489D1D3EE85500FF800E /* MonkeyTree1.png */,
 				CE3DD9131D386B5D0009F3B0 /* greenLandscapeBackground_EmojiGame.png */,
 				CE3DD9141D386B5D0009F3B0 /* ground_EmojiGame.png */,
+				CEE848931D3E9C4600FF800E /* rollingFaceEmojiGame.png */,
 				CE3DD9151D386B5D0009F3B0 /* mainCharacterEmojiGame.png */,
 			);
 			path = assestsEmojiGameNew2;
@@ -326,13 +341,18 @@
 			files = (
 				CE25EF611D34133600F2EEA4 /* GameScene.sks in Resources */,
 				CE3DD9181D386B5D0009F3B0 /* mainCharacterEmojiGame.png in Resources */,
+				CEE848981D3ECD8900FF800E /* monkeyFaceEmojiGame.png in Resources */,
 				CE25EFDA1D384A3500F2EEA4 /* Jungle.sks in Resources */,
 				CE3DD9161D386B5D0009F3B0 /* greenLandscapeBackground_EmojiGame.png in Resources */,
 				CE3DD9171D386B5D0009F3B0 /* ground_EmojiGame.png in Resources */,
+				CEE8489A1D3ED33200FF800E /* MonkeyTree1.sks in Resources */,
 				CE25EFA01D36C17D00F2EEA4 /* MainCharacter.sks in Resources */,
+				CEE8489E1D3EE85500FF800E /* MonkeyTree1.png in Resources */,
 				CE25EF6D1D34133600F2EEA4 /* LaunchScreen.storyboard in Resources */,
+				CEE848941D3E9C4600FF800E /* rollingFaceEmojiGame.png in Resources */,
 				CE25EF6A1D34133600F2EEA4 /* Assets.xcassets in Resources */,
 				CE25EF681D34133600F2EEA4 /* Main.storyboard in Resources */,
+				CEE848961D3EC61B00FF800E /* Monkey.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

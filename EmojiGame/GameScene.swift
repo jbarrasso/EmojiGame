@@ -19,6 +19,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var sideTouched: Side = .None
     
+    var levelNode: SKNode!
+    
     /* Camera helpers */
     var cameraTarget: SKNode?
     
@@ -71,14 +73,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for touch in touches {
             
             /* Grab scene position of touch */
-            let location = touch.locationInView(view)
+            let location = touch.locationInNode(self)
             
-            if location.x > size.width / 2 {
+            if location.x > mainCharacter.parent?.convertPoint(mainCharacter.position, toNode: self).x {
                 
                 mainCharacter.physicsBody?.applyForce(CGVectorMake(20, 0))
             } else {
                 
                 mainCharacter.physicsBody?.applyForce(CGVectorMake(-20, 0))
+            }
+            
+            if location.y > size.height / 2 {
+                
+                mainCharacter.physicsBody?.applyForce(CGVectorMake(0, 20))
             }
             
             cameraTarget = mainCharacter
@@ -95,7 +102,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             camera?.position = CGPoint(x:cameraTarget.position.x+50, y:camera!.position.y)
             
             /* Clamp camera scrolling to our visible scene area only */
-            camera?.position.x.clamp(283, 350)
+            camera?.position.x.clamp(283, 300)
             
             /* Check penguin has come to rest */
             if cameraTarget.physicsBody?.joints.count == 0 && cameraTarget.physicsBody?.velocity.length() < 0.15 || cameraTarget.position.x > 1100 || cameraTarget.position.x < 50 {
