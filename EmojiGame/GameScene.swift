@@ -48,6 +48,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         mainCharacter = self.childNodeWithName("//mainCharacter") as! SKSpriteNode
         
+     
+        
 //        let swipeRight:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedRight(_:)))
 //        swipeRight.direction = .Right
 //        view.addGestureRecognizer(swipeRight)
@@ -112,6 +114,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let cameraSequence = SKAction.sequence([cameraDelay,cameraReset])
                 
                 camera?.runAction(cameraSequence)
+            }
+            
+            if mainCharacter.physicsBody?.velocity.length() > 25 {
+                
+                mainCharacter.texture = SKTexture(imageNamed: "rollingFaceEmojiGame")
+                
+            } else {
+                
+                mainCharacter.texture = SKTexture(imageNamed: "mainCharacterEmojiGame")
             }
         }
     }

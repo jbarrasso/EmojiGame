@@ -11,66 +11,27 @@ import Foundation
 import SpriteKit
 
 class Jungle: SKScene, SKPhysicsContactDelegate {
-    
-    /* UI Connections */
-    //var buttonPlay: MSButtonNode!
+
     var mainCharacter: SKSpriteNode!
-    
-    var scrollLayer: SKNode!
-    
-    var SKSpriteNode_1: SKSpriteNode!
-    
-    let fixedDelta: CFTimeInterval = 1.0/60.0 /* 60 FPS */
-    let scrollSpeed: CGFloat = 160
-    
-    var levelNode: SKNode!
-    
+
     var cameraTarget: SKNode?
+    
+    let fixedDelta: CFTimeInterval = 6.0/60.0 /* 60 FPS */
+
+    var spawnTimer: CFTimeInterval = 0
     
     override func didMoveToView(view: SKView) {
         
         physicsWorld.contactDelegate = self
         
         mainCharacter = self.childNodeWithName("//mainCharacter") as! SKSpriteNode
-        
-        /* Set reference to scroll layer node */
-        scrollLayer = self.childNodeWithName("scrollLayer")
-        
-        SKSpriteNode_1 = self.childNodeWithName("//SKSpriteNode_1") as! SKSpriteNode
-        
-        levelNode = childNodeWithName("//levelNode")
-        
-        /* Load Level 1 */
-        let resourcePath = NSBundle.mainBundle().pathForResource("MonkeyTree1", ofType: "sks")
-        let newLevel = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
-        levelNode.addChild(newLevel)
 
-//        /* Setup your scene here */
-//        
-//        /* Set UI connections */
-//        buttonPlay = self.childNodeWithName("buttonPlay") as! MSButtonNode
-//        
-//        /* Setup restart button selection handler */
-//        buttonPlay.selectedHandler = {
-//            
-//            /* Grab reference to our SpriteKit view */
-//            let skView = self.view as SKView!
-//            
-//            /* Load Game scene */
-//            let scene = GameScene(fileNamed:"GameScene") as GameScene!
-//            
-//            /* Ensure correct aspect mode (iPhone + iPad) */
-//            scene.scaleMode = .AspectFit
-//            
-//            /* Show debug */
-//            skView.showsPhysics = true
-//            skView.showsDrawCount = true
-//            skView.showsFPS = true
-//            
-//            /* Start game scene */
-//            skView.presentScene(scene)
-//        }
-        
+        for trees in self["treeSpawn"] {
+            
+            let resourcePath = NSBundle.mainBundle().pathForResource("MonkeyTree1", ofType: "sks")
+            let newTree = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
+            trees.addChild(newTree)
+        }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -90,10 +51,10 @@ class Jungle: SKScene, SKPhysicsContactDelegate {
                 mainCharacter.physicsBody?.applyForce(CGVectorMake(-20, 0))
             }
             
-            if location.y > size.height / 2 {
-                
-                mainCharacter.physicsBody?.applyForce(CGVectorMake(0, 20))
-            }
+//            if location.y > size.height / 2 {
+//                
+//                mainCharacter.physicsBody?.applyForce(CGVectorMake(0, 20))
+//            }
             
             cameraTarget = mainCharacter
         }
@@ -109,42 +70,40 @@ class Jungle: SKScene, SKPhysicsContactDelegate {
             
             /* Clamp camera scrolling to our visible scene area only */
             camera?.position.x.clamp(283, 1200)
-            
         }
-        print(mainCharacter.physicsBody?.velocity.length())
         
         if mainCharacter.physicsBody?.velocity.length() > 25 {
             
             mainCharacter.texture = SKTexture(imageNamed: "rollingFaceEmojiGame")
             
         } else {
-            
+    
             mainCharacter.texture = SKTexture(imageNamed: "mainCharacterEmojiGame")
         }
-    }
+        
+        spawnTimer+=fixedDelta
     
-//    func scrollJungle() {
-//        
-//        /* Scroll World */
-//        //scrollLayer.position.x -= scrollSpeed * CGFloat(fixedDelta)
-//        
-//        /* Loop through scroll layer nodes */
-//        for ground in scrollLayer.children as! [SKSpriteNode] {
-//            
-//            /* Get ground node position, cwionvert node position to scene space */
-//            let groundPosition = scrollLayer.convertPoint(ground.position, toNode: self)
-//            
-//            /* Check if ground sprite has left the scene */
-//            if (camera?.position.x)! - self.view!.frame.width / 2 >= ground.size.width {
-//                
-//                print("hey")
-//                
-//                /* Reposition ground sprite to the second starting position */
-//                let newPosition = CGPointMake( (self.size.width / 2) + ground.size.width * 2, groundPosition.y)
-//                
-//                /* Convert new node position back to scroll layer space */
-//                ground.position = self.convertPoint(newPosition, toNode: scrollLayer)
-//            }
-//        }
-//    }
+        if spawnTimer >= 1.5 {
+        
+            flingBananas()
+            spawnTimer = 0
+        }
+    }
+
+    func flingBananas() {
+        
+        for monkey in self["//monkey"] as! [SKSpriteNode] {
+            
+            /* Spawn bananas */
+            let resourcePath = NSBundle.mainBundle().pathForResource("Banana", ofType: "sks")
+            let bananaRef = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
+            addChild(bananaRef)
+            bananaRef.position = self.convertPoint(monkey.position, fromNode: monkey)
+
+            let myBanana = bananaRef.children[0].children[0]
+            myBanana.runAction(SKAction.applyImpulse(CGVector(dx: 10, dy: 2), duration: 1))
+            myBanana.runAction(SKAction.applyAngularImpulse(CGFloat(0.025), duration: 10))
+            self.physicsWorld.gravity = CGVectorMake(0.0, -1.8);
+        }
+    }
 }

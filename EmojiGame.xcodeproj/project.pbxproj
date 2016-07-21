@@ -40,6 +40,8 @@
 		CEE848981D3ECD8900FF800E /* monkeyFaceEmojiGame.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE848971D3ECD8900FF800E /* monkeyFaceEmojiGame.png */; };
 		CEE8489A1D3ED33200FF800E /* MonkeyTree1.sks in Resources */ = {isa = PBXBuildFile; fileRef = CEE848991D3ED33200FF800E /* MonkeyTree1.sks */; };
 		CEE8489E1D3EE85500FF800E /* MonkeyTree1.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE8489D1D3EE85500FF800E /* MonkeyTree1.png */; };
+		CEE96DEE1D3FF68C000942B9 /* Banana.sks in Resources */ = {isa = PBXBuildFile; fileRef = CEE96DED1D3FF68C000942B9 /* Banana.sks */; };
+		CEE96DF01D3FF6F5000942B9 /* bananaEmojiGame.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE96DEF1D3FF6F5000942B9 /* bananaEmojiGame.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,8 @@
 		CEE848971D3ECD8900FF800E /* monkeyFaceEmojiGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monkeyFaceEmojiGame.png; sourceTree = "<group>"; };
 		CEE848991D3ED33200FF800E /* MonkeyTree1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MonkeyTree1.sks; sourceTree = "<group>"; };
 		CEE8489D1D3EE85500FF800E /* MonkeyTree1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MonkeyTree1.png; sourceTree = "<group>"; };
+		CEE96DED1D3FF68C000942B9 /* Banana.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Banana.sks; path = ../Banana.sks; sourceTree = "<group>"; };
+		CEE96DEF1D3FF6F5000942B9 /* bananaEmojiGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bananaEmojiGame.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +222,7 @@
 				CE25EFD91D384A3500F2EEA4 /* Jungle.sks */,
 				CE9571F01D3873390018442B /* Jungle.swift */,
 				CEE848991D3ED33200FF800E /* MonkeyTree1.sks */,
+				CEE96DED1D3FF68C000942B9 /* Banana.sks */,
 			);
 			name = Levels;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				CEE848971D3ECD8900FF800E /* monkeyFaceEmojiGame.png */,
+				CEE96DEF1D3FF6F5000942B9 /* bananaEmojiGame.png */,
 				CEE8489D1D3EE85500FF800E /* MonkeyTree1.png */,
 				CE3DD9131D386B5D0009F3B0 /* greenLandscapeBackground_EmojiGame.png */,
 				CE3DD9141D386B5D0009F3B0 /* ground_EmojiGame.png */,
@@ -341,8 +347,10 @@
 			files = (
 				CE25EF611D34133600F2EEA4 /* GameScene.sks in Resources */,
 				CE3DD9181D386B5D0009F3B0 /* mainCharacterEmojiGame.png in Resources */,
+				CEE96DEE1D3FF68C000942B9 /* Banana.sks in Resources */,
 				CEE848981D3ECD8900FF800E /* monkeyFaceEmojiGame.png in Resources */,
 				CE25EFDA1D384A3500F2EEA4 /* Jungle.sks in Resources */,
+				CEE96DF01D3FF6F5000942B9 /* bananaEmojiGame.png in Resources */,
 				CE3DD9161D386B5D0009F3B0 /* greenLandscapeBackground_EmojiGame.png in Resources */,
 				CE3DD9171D386B5D0009F3B0 /* ground_EmojiGame.png in Resources */,
 				CEE8489A1D3ED33200FF800E /* MonkeyTree1.sks in Resources */,
