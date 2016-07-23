@@ -152,8 +152,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if contactA.categoryBitMask == 8 && contactB.categoryBitMask == 1 || contactA.categoryBitMask == 1 && contactB.categoryBitMask == 8 {
             
-            print("hit")
-            
             /* Grab reference to our SpriteKit view */
             let skView = self.view as SKView!
             
