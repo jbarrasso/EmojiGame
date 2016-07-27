@@ -12,6 +12,10 @@ enum Side {
     case Left, Right, None
 }
 
+enum State {
+    case Patrol, Attack, Dead, None
+}
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var mainCharacter: SKSpriteNode!
@@ -101,7 +105,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let cameraTarget = cameraTarget {
             
             /* Set camera position to follow target horizontally, keep vertical locked */
-            camera?.position = CGPoint(x:cameraTarget.position.x+50, y:camera!.position.y)
+            camera?.position = CGPoint(x:cameraTarget.position.x, y:camera!.position.y)
             
             /* Clamp camera scrolling to our visible scene area only */
             camera?.position.x.clamp(283, 300)
