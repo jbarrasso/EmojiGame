@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE015E961D4E9D490028A910 /* Banana.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE015E951D4E9D490028A910 /* Banana.sks */; };
 		CE25EF5F1D34133600F2EEA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25EF5E1D34133600F2EEA4 /* AppDelegate.swift */; };
 		CE25EF611D34133600F2EEA4 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE25EF601D34133600F2EEA4 /* GameScene.sks */; };
 		CE25EF631D34133600F2EEA4 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25EF621D34133600F2EEA4 /* GameScene.swift */; };
@@ -52,7 +53,6 @@
 		CEE848961D3EC61B00FF800E /* Monkey.sks in Resources */ = {isa = PBXBuildFile; fileRef = CEE848951D3EC61B00FF800E /* Monkey.sks */; };
 		CEE848981D3ECD8900FF800E /* monkeyFaceEmojiGame.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE848971D3ECD8900FF800E /* monkeyFaceEmojiGame.png */; };
 		CEE8489E1D3EE85500FF800E /* MonkeyTree1.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE8489D1D3EE85500FF800E /* MonkeyTree1.png */; };
-		CEE96DEE1D3FF68C000942B9 /* Banana.sks in Resources */ = {isa = PBXBuildFile; fileRef = CEE96DED1D3FF68C000942B9 /* Banana.sks */; };
 		CEE96DF01D3FF6F5000942B9 /* bananaEmojiGame.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE96DEF1D3FF6F5000942B9 /* bananaEmojiGame.png */; };
 		CEED55651D468B34002CA137 /* moneyBagEmojiGame.png in Resources */ = {isa = PBXBuildFile; fileRef = CEED55641D468B34002CA137 /* moneyBagEmojiGame.png */; };
 		CEED55671D468B4D002CA137 /* MoneyBag.sks in Resources */ = {isa = PBXBuildFile; fileRef = CEED55661D468B4D002CA137 /* MoneyBag.sks */; };
@@ -80,6 +80,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE015E951D4E9D490028A910 /* Banana.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Banana.sks; sourceTree = "<group>"; };
 		CE25EF5B1D34133600F2EEA4 /* EmojiGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE25EF5E1D34133600F2EEA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE25EF601D34133600F2EEA4 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -131,7 +132,6 @@
 		CEE848951D3EC61B00FF800E /* Monkey.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Monkey.sks; sourceTree = "<group>"; };
 		CEE848971D3ECD8900FF800E /* monkeyFaceEmojiGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monkeyFaceEmojiGame.png; sourceTree = "<group>"; };
 		CEE8489D1D3EE85500FF800E /* MonkeyTree1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MonkeyTree1.png; sourceTree = "<group>"; };
-		CEE96DED1D3FF68C000942B9 /* Banana.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Banana.sks; path = ../Banana.sks; sourceTree = "<group>"; };
 		CEE96DEF1D3FF6F5000942B9 /* bananaEmojiGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bananaEmojiGame.png; sourceTree = "<group>"; };
 		CEED55641D468B34002CA137 /* moneyBagEmojiGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moneyBagEmojiGame.png; sourceTree = "<group>"; };
 		CEED55661D468B4D002CA137 /* MoneyBag.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MoneyBag.sks; sourceTree = "<group>"; };
@@ -295,10 +295,10 @@
 		CE8B8F121D4945B900DE6C6F /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				CE015E951D4E9D490028A910 /* Banana.sks */,
 				CEED55661D468B4D002CA137 /* MoneyBag.sks */,
 				CE8B8F1D1D4977EE00DE6C6F /* FlyingMoney.sks */,
 				CEF65B411D46C53200048AC7 /* Bomb.sks */,
-				CEE96DED1D3FF68C000942B9 /* Banana.sks */,
 			);
 			name = Items;
 			sourceTree = "<group>";
@@ -416,7 +416,6 @@
 				CE3DD9181D386B5D0009F3B0 /* mainCharacterEmojiGame.png in Resources */,
 				CE8B8F0F1D49455E00DE6C6F /* Tiger.sks in Resources */,
 				CE8B8F1E1D4977EE00DE6C6F /* FlyingMoney.sks in Resources */,
-				CEE96DEE1D3FF68C000942B9 /* Banana.sks in Resources */,
 				CEE848981D3ECD8900FF800E /* monkeyFaceEmojiGame.png in Resources */,
 				CE25EFDA1D384A3500F2EEA4 /* Jungle.sks in Resources */,
 				CEE96DF01D3FF6F5000942B9 /* bananaEmojiGame.png in Resources */,
@@ -428,6 +427,7 @@
 				CE39819C1D4ABF3E00048597 /* upButtonEmojiGame.png in Resources */,
 				CE8B8F111D49459200DE6C6F /* tigerEmojiGame.png in Resources */,
 				CEE8489E1D3EE85500FF800E /* MonkeyTree1.png in Resources */,
+				CE015E961D4E9D490028A910 /* Banana.sks in Resources */,
 				CE25EF6D1D34133600F2EEA4 /* LaunchScreen.storyboard in Resources */,
 				CE3981A21D4AC0CE00048597 /* moveLeftArrowEmojiGame.png in Resources */,
 				CEE848941D3E9C4600FF800E /* rollingFaceEmojiGame.png in Resources */,
