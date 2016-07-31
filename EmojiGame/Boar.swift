@@ -16,7 +16,14 @@ class Boar: SKSpriteNode {
     
     func Patrol() {
         
+        let moveLeft = SKAction.moveBy(CGVector(dx: -100, dy: 0), duration: 1.0)
+        let turnAround = SKAction.runBlock({ self.xScale = (-1 * self.xScale) })
+        let delay = SKAction.waitForDuration(0.5)
+        let moveRight = SKAction.moveBy(CGVector(dx: 100, dy: 0), duration: 1.0)
         
+        let sequence = SKAction.sequence([moveLeft, delay, turnAround, delay, moveRight, delay,turnAround, delay])
+        
+        self.runAction(SKAction.repeatActionForever(sequence))
     }
     
     func Attack() {
@@ -28,7 +35,10 @@ class Boar: SKSpriteNode {
     
     func Dead() {
         
-        //stop all actions
-        //fade and remove
+        self.removeAllActions()
+    }
+    
+    func update(currentTime: NSTimeInterval) {
+        
     }
 }

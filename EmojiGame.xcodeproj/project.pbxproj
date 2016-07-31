@@ -30,6 +30,11 @@
 		CE25EFD11D36F39B00F2EEA4 /* SKTTimingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25EFC51D36F39B00F2EEA4 /* SKTTimingFunctions.swift */; };
 		CE25EFD21D36F39B00F2EEA4 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25EFC61D36F39B00F2EEA4 /* Vector3.swift */; };
 		CE25EFDA1D384A3500F2EEA4 /* Jungle.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE25EFD91D384A3500F2EEA4 /* Jungle.sks */; };
+		CE39819C1D4ABF3E00048597 /* upButtonEmojiGame.png in Resources */ = {isa = PBXBuildFile; fileRef = CE39819B1D4ABF3E00048597 /* upButtonEmojiGame.png */; };
+		CE39819E1D4ABF5D00048597 /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39819D1D4ABF5D00048597 /* MSButtonNode.swift */; };
+		CE3981A01D4AC05400048597 /* moveRightArrowEmojiGame.png in Resources */ = {isa = PBXBuildFile; fileRef = CE39819F1D4AC05400048597 /* moveRightArrowEmojiGame.png */; };
+		CE3981A21D4AC0CE00048597 /* moveLeftArrowEmojiGame.png in Resources */ = {isa = PBXBuildFile; fileRef = CE3981A11D4AC0CE00048597 /* moveLeftArrowEmojiGame.png */; };
+		CE3981A81D4BD84600048597 /* bestJungleEmojiGame.png in Resources */ = {isa = PBXBuildFile; fileRef = CE3981A71D4BD84600048597 /* bestJungleEmojiGame.png */; };
 		CE3DD9111D3860D80009F3B0 /* MSReferenceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DD9101D3860D80009F3B0 /* MSReferenceNode.swift */; };
 		CE3DD9161D386B5D0009F3B0 /* greenLandscapeBackground_EmojiGame.png in Resources */ = {isa = PBXBuildFile; fileRef = CE3DD9131D386B5D0009F3B0 /* greenLandscapeBackground_EmojiGame.png */; };
 		CE3DD9171D386B5D0009F3B0 /* ground_EmojiGame.png in Resources */ = {isa = PBXBuildFile; fileRef = CE3DD9141D386B5D0009F3B0 /* ground_EmojiGame.png */; };
@@ -104,6 +109,11 @@
 		CE25EFC51D36F39B00F2EEA4 /* SKTTimingFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTTimingFunctions.swift; sourceTree = "<group>"; };
 		CE25EFC61D36F39B00F2EEA4 /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
 		CE25EFD91D384A3500F2EEA4 /* Jungle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Jungle.sks; sourceTree = "<group>"; };
+		CE39819B1D4ABF3E00048597 /* upButtonEmojiGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upButtonEmojiGame.png; sourceTree = "<group>"; };
+		CE39819D1D4ABF5D00048597 /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
+		CE39819F1D4AC05400048597 /* moveRightArrowEmojiGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moveRightArrowEmojiGame.png; sourceTree = "<group>"; };
+		CE3981A11D4AC0CE00048597 /* moveLeftArrowEmojiGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moveLeftArrowEmojiGame.png; sourceTree = "<group>"; };
+		CE3981A71D4BD84600048597 /* bestJungleEmojiGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bestJungleEmojiGame.png; sourceTree = "<group>"; };
 		CE3DD9101D3860D80009F3B0 /* MSReferenceNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSReferenceNode.swift; sourceTree = "<group>"; };
 		CE3DD9131D386B5D0009F3B0 /* greenLandscapeBackground_EmojiGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenLandscapeBackground_EmojiGame.png; sourceTree = "<group>"; };
 		CE3DD9141D386B5D0009F3B0 /* ground_EmojiGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ground_EmojiGame.png; sourceTree = "<group>"; };
@@ -183,6 +193,7 @@
 				CE3DD9121D386B5D0009F3B0 /* assestsEmojiGameNew2 */,
 				CE25EF5E1D34133600F2EEA4 /* AppDelegate.swift */,
 				CE3DD9101D3860D80009F3B0 /* MSReferenceNode.swift */,
+				CE39819D1D4ABF5D00048597 /* MSButtonNode.swift */,
 				CE25EF9C1D36C0E400F2EEA4 /* Characters */,
 				CE8B8F121D4945B900DE6C6F /* Items */,
 				CE25EFD81D384A1600F2EEA4 /* Levels */,
@@ -260,9 +271,13 @@
 		CE3DD9121D386B5D0009F3B0 /* assestsEmojiGameNew2 */ = {
 			isa = PBXGroup;
 			children = (
+				CE39819F1D4AC05400048597 /* moveRightArrowEmojiGame.png */,
+				CE39819B1D4ABF3E00048597 /* upButtonEmojiGame.png */,
 				CE8B8F1B1D496EEC00DE6C6F /* boarEmojiGame.png */,
 				CE8B8F101D49459200DE6C6F /* tigerEmojiGame.png */,
+				CE3981A71D4BD84600048597 /* bestJungleEmojiGame.png */,
 				CEED55641D468B34002CA137 /* moneyBagEmojiGame.png */,
+				CE3981A11D4AC0CE00048597 /* moveLeftArrowEmojiGame.png */,
 				CEE848971D3ECD8900FF800E /* monkeyFaceEmojiGame.png */,
 				CEE96DEF1D3FF6F5000942B9 /* bananaEmojiGame.png */,
 				CEF65B3D1D46C14100048AC7 /* flyingMoneyEmojiGame.png */,
@@ -356,6 +371,7 @@
 				TargetAttributes = {
 					CE25EF5A1D34133600F2EEA4 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = TZ862DF7D8;
 					};
 					CE25EF721D34133600F2EEA4 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -394,6 +410,7 @@
 			files = (
 				CEF65B421D46C53200048AC7 /* Bomb.sks in Resources */,
 				CEF65B441D46C6E600048AC7 /* monkeyEmojiGame.png in Resources */,
+				CE3981A81D4BD84600048597 /* bestJungleEmojiGame.png in Resources */,
 				CE25EF611D34133600F2EEA4 /* GameScene.sks in Resources */,
 				CEF65B3E1D46C14100048AC7 /* flyingMoneyEmojiGame.png in Resources */,
 				CE3DD9181D386B5D0009F3B0 /* mainCharacterEmojiGame.png in Resources */,
@@ -407,9 +424,12 @@
 				CE3DD9161D386B5D0009F3B0 /* greenLandscapeBackground_EmojiGame.png in Resources */,
 				CE3DD9171D386B5D0009F3B0 /* ground_EmojiGame.png in Resources */,
 				CE25EFA01D36C17D00F2EEA4 /* MainCharacter.sks in Resources */,
+				CE3981A01D4AC05400048597 /* moveRightArrowEmojiGame.png in Resources */,
+				CE39819C1D4ABF3E00048597 /* upButtonEmojiGame.png in Resources */,
 				CE8B8F111D49459200DE6C6F /* tigerEmojiGame.png in Resources */,
 				CEE8489E1D3EE85500FF800E /* MonkeyTree1.png in Resources */,
 				CE25EF6D1D34133600F2EEA4 /* LaunchScreen.storyboard in Resources */,
+				CE3981A21D4AC0CE00048597 /* moveLeftArrowEmojiGame.png in Resources */,
 				CEE848941D3E9C4600FF800E /* rollingFaceEmojiGame.png in Resources */,
 				CEED55671D468B4D002CA137 /* MoneyBag.sks in Resources */,
 				CE25EF6A1D34133600F2EEA4 /* Assets.xcassets in Resources */,
@@ -462,6 +482,7 @@
 				CE25EFC71D36F39B00F2EEA4 /* CGFloat+Extensions.swift in Sources */,
 				CE25EFD21D36F39B00F2EEA4 /* Vector3.swift in Sources */,
 				CE25EF5F1D34133600F2EEA4 /* AppDelegate.swift in Sources */,
+				CE39819E1D4ABF5D00048597 /* MSButtonNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,10 +626,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = EmojiGame/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffbarrasso.EmojiGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -616,10 +641,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = EmojiGame/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffbarrasso.EmojiGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

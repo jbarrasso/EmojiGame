@@ -9,14 +9,46 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EmojiGame/GameScene.swift"
-            timestampString = "491351993.950881"
+            filePath = "EmojiGame/Jungle.swift"
+            timestampString = "491637933.577936"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "touchesBegan(_:withEvent:)"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "update(_:)"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EmojiGame.Jungle.update (Swift.Double) -&gt; ()"
+                  moduleName = "EmojiGame"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/JeffBarrasso/Desktop/Make%20School/EmojiGame/EmojiGame/Jungle.swift"
+                  timestampString = "491690173.125721"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
+                  offsetFromSymbolStart = "536">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EmojiGame.Jungle.update (Swift.Double) -&gt; ()"
+                  moduleName = "EmojiGame"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/JeffBarrasso/Desktop/Make%20School/EmojiGame/EmojiGame/Jungle.swift"
+                  timestampString = "491690173.12592"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
+                  offsetFromSymbolStart = "584">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

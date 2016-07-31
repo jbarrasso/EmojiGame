@@ -21,6 +21,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var mainCharacter: SKSpriteNode!
     var moveCharacter = CGVector(dx: 0, dy: 0)
     
+    let fixedDelta: CFTimeInterval = 1.0/60.0 /* 60 FPS */
+    var spawnTimer: CFTimeInterval = 0
+    
+    /* Will move character only if this is true */
+    var stillTouching: Bool = false
+    
+    var canJump: Bool = true
+    
     var sideTouched: Side = .None
     
     var levelNode: SKNode!
@@ -28,47 +36,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     /* Camera helpers */
     var cameraTarget: SKNode?
     
-//    let right = SKAction.moveByX(64, y: 0, duration: 0.6)
-//    let left = SKAction.moveByX(-64, y: 0, duration: 0.6)
-//    let up = SKAction.moveByX(0, y: 64, duration: 0.6)
-//    let down = SKAction.moveByX(0, y: -64, duration: 0.6)
-//    
-//    func swipedRight(sender:UISwipeGestureRecognizer){
-//        mainCharacter.runAction(right)
-//    }
-//    func swipedLeft(sender:UISwipeGestureRecognizer){
-//        mainCharacter.runAction(left)
-//    }
-//    func swipedUp(sender:UISwipeGestureRecognizer){
-//        mainCharacter.runAction(up)
-//    }
-//    func swipedDown(sender:UISwipeGestureRecognizer){
-//        mainCharacter.runAction(down)
-//    }
+    var jumpButton: MSButtonNode!
+    var moveLeftButton: MSButtonNode!
+    var moveRightButton: MSButtonNode!
     
     override func didMoveToView(view: SKView) {
         
         physicsWorld.contactDelegate = self
         
+        self.physicsWorld.gravity = CGVectorMake(0.0, -4.8);
+        
         mainCharacter = self.childNodeWithName("//mainCharacter") as! SKSpriteNode
         
-     
+        jumpButton = self.childNodeWithName("//jumpButton") as! MSButtonNode
         
-//        let swipeRight:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedRight(_:)))
-//        swipeRight.direction = .Right
-//        view.addGestureRecognizer(swipeRight)
-//        
-//        let swipeLeft:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedLeft(_:)))
-//        swipeLeft.direction = .Left
-//        view.addGestureRecognizer(swipeLeft)
-//        
-//        let swipeUp:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedUp(_:)))
-//        swipeUp.direction = .Up
-//        view.addGestureRecognizer(swipeUp)
-//        
-//        let swipeDown:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedDown(_:)))
-//        swipeDown.direction = .Down
-//        view.addGestureRecognizer(swipeDown)
+        moveLeftButton = self.childNodeWithName("//moveLeftButton") as! MSButtonNode
+        
+        moveRightButton = self.childNodeWithName("//moveRightButton") as! MSButtonNode
+        
+        
+        /* Setup jump button selection handler */
+        jumpButton.selectedHandler = {
+            
+            if self.canJump {
+                
+                self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 10))
+            }
+        }
         
     }
     
@@ -81,72 +75,121 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             /* Grab scene position of touch */
             let location = touch.locationInNode(self)
             
-            if location.x > mainCharacter.parent?.convertPoint(mainCharacter.position, toNode: self).x {
+            /* Allows charcter movement left/right */
+            stillTouching = true
+            
+            if  location.x > mainCharacter.parent?.convertPoint(mainCharacter.position, toNode: self).x {
                 
-                mainCharacter.physicsBody?.applyForce(CGVectorMake(20, 0))
+                sideTouched = .Right
+                mainCharacter.physicsBody?.applyAngularImpulse(-0.000725)
+                
             } else {
                 
-                mainCharacter.physicsBody?.applyForce(CGVectorMake(-20, 0))
+                sideTouched = .Left
+                mainCharacter.physicsBody?.applyAngularImpulse(0.000725)
             }
             
-            if location.y > size.height / 2 {
-                
-                mainCharacter.physicsBody?.applyForce(CGVectorMake(0, 20))
-            }
-            
+            /* With each touch, set the camera to target mainCharacter */
             cameraTarget = mainCharacter
         }
     }
     
-    override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        /* Allows mainCharacter to slow down by avoiding moveChar call in update */
+        stillTouching = false
+        
+        if mainCharacter.physicsBody?.velocity.dx > 0 {
+            
+            /* Dynamic angular & linear forces to slow character down appropriately */
+            let stoppingForce = (mainCharacter.physicsBody?.velocity.dx)! / 85
+            let reverseRotation = (mainCharacter.physicsBody?.angularVelocity)! / 9000
+            
+            mainCharacter.physicsBody?.applyAngularImpulse(-reverseRotation)
+            mainCharacter.physicsBody?.applyImpulse(CGVectorMake(-stoppingForce, 0))
+            
+        } else if mainCharacter.physicsBody?.velocity.dx < 0 {
+            
+            let stoppingForce = (mainCharacter.physicsBody?.velocity.dx)! / 85
+            let reverseRotation = (mainCharacter.physicsBody?.angularVelocity)! / 9000
+            
+            mainCharacter.physicsBody?.applyAngularImpulse(-reverseRotation)
+            mainCharacter.physicsBody?.applyImpulse(CGVectorMake(-stoppingForce, 0))
+        }
+    }
+    
+    override func update(currentTime: NSTimeInterval) {
         
         /* Check we have a valid camera target to follow */
         if let cameraTarget = cameraTarget {
             
             /* Set camera position to follow target horizontally, keep vertical locked */
-            camera?.position = CGPoint(x:cameraTarget.position.x, y:camera!.position.y)
+            camera?.position = CGPoint(x:cameraTarget.position.x+100, y:camera!.position.y)
             
             /* Clamp camera scrolling to our visible scene area only */
             camera?.position.x.clamp(283, 300)
+        }
+        
+        let velocityX = mainCharacter.physicsBody?.velocity.dx ?? 0
+        
+        /* Check and cap velocity */
+        if velocityX > 210 {
             
-            /* Check penguin has come to rest */
-            if cameraTarget.physicsBody?.joints.count == 0 && cameraTarget.physicsBody?.velocity.length() < 0.15 || cameraTarget.position.x > 1100 || cameraTarget.position.x < 50 {
+            mainCharacter.physicsBody?.velocity.dx = 210
+        } else if velocityX < -210 {
             
-                let cameraReset = SKAction.moveTo(CGPoint(x:284, y:camera!.position.y), duration: 1.5)
-                let cameraDelay = SKAction.waitForDuration(0.5)
-                let cameraSequence = SKAction.sequence([cameraDelay,cameraReset])
-                
-                camera?.runAction(cameraSequence)
-            }
+            mainCharacter.physicsBody?.velocity.dx = -210
+        }
+        
+        if mainCharacter.physicsBody?.velocity.length() > 85 {
             
-            if mainCharacter.physicsBody?.velocity.length() > 25 {
-                
-                mainCharacter.texture = SKTexture(imageNamed: "rollingFaceEmojiGame")
-                
-            } else {
-                
-                mainCharacter.texture = SKTexture(imageNamed: "mainCharacterEmojiGame")
-            }
+            mainCharacter.texture = SKTexture(imageNamed: "rollingFaceEmojiGame")
+            
+        } else {
+            
+            mainCharacter.texture = SKTexture(imageNamed: "mainCharacterEmojiGame")
+        }
+        
+        spawnTimer+=fixedDelta
+        
+        moveChar()
+        
+        /* Additional character dampers */
+        if mainCharacter.physicsBody?.velocity.dx != 0 && !stillTouching {
+            
+            mainCharacter.physicsBody?.linearDamping = 1.0
+            mainCharacter.physicsBody?.friction = 1.0
+        } else {
+            mainCharacter.physicsBody?.linearDamping = 0.2
+            mainCharacter.physicsBody?.friction = 0.2
+        }
+        
+        if self.mainCharacter.physicsBody?.velocity.dy != 0 {
+            //or do sincetouch
+            
+            self.canJump = false
+        } else {
+            
+            self.canJump = true
         }
     }
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        /* Called when a touch moved */
+    func moveChar() {
+        /* Touch & hold to move using boolean values */
         
-        /* There will only be one touch as multi touch is not enabled by default */
-//        for touch in touches {
-//            
-//            //Grab scene position of touch and update touchNode position
-//            let location = touch.locationInNode(self)
-//            //touchNode.position = location
-//            
-//        }
-    }
-    
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        /* Called when a touch ended */
-        
+        /* Default set to false */
+        if stillTouching {
+            
+            if sideTouched == .Right {
+                
+                mainCharacter.physicsBody?.applyForce(CGVectorMake(8, 0))
+            }
+                
+            else if sideTouched == .Left {
+                
+                mainCharacter.physicsBody?.applyForce(CGVectorMake(-8, 0))
+            }
+        }
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
@@ -166,7 +209,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             scene.scaleMode = .AspectFit
             
             /* Show debug */
-            skView.showsPhysics = true
             skView.showsDrawCount = true
             skView.showsFPS = true
             
