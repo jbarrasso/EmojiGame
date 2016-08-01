@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		CE015E961D4E9D490028A910 /* Banana.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE015E951D4E9D490028A910 /* Banana.sks */; };
+		CE015E981D4EB0630028A910 /* Snake.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE015E971D4EB0630028A910 /* Snake.sks */; };
+		CE015E9A1D4EB0A60028A910 /* snakeEmojiGame.png in Resources */ = {isa = PBXBuildFile; fileRef = CE015E991D4EB0A60028A910 /* snakeEmojiGame.png */; };
+		CE015E9C1D4EB1CD0028A910 /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE015E9B1D4EB1CD0028A910 /* Snake.swift */; };
 		CE25EF5F1D34133600F2EEA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25EF5E1D34133600F2EEA4 /* AppDelegate.swift */; };
 		CE25EF611D34133600F2EEA4 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE25EF601D34133600F2EEA4 /* GameScene.sks */; };
 		CE25EF631D34133600F2EEA4 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25EF621D34133600F2EEA4 /* GameScene.swift */; };
@@ -81,6 +84,9 @@
 
 /* Begin PBXFileReference section */
 		CE015E951D4E9D490028A910 /* Banana.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Banana.sks; sourceTree = "<group>"; };
+		CE015E971D4EB0630028A910 /* Snake.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Snake.sks; sourceTree = "<group>"; };
+		CE015E991D4EB0A60028A910 /* snakeEmojiGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snakeEmojiGame.png; sourceTree = "<group>"; };
+		CE015E9B1D4EB1CD0028A910 /* Snake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snake.swift; sourceTree = "<group>"; };
 		CE25EF5B1D34133600F2EEA4 /* EmojiGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE25EF5E1D34133600F2EEA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE25EF601D34133600F2EEA4 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -232,7 +238,9 @@
 				CE25EF9F1D36C17D00F2EEA4 /* MainCharacter.sks */,
 				CE8B8F151D495D3800DE6C6F /* Tiger.swift */,
 				CE8B8F171D496EA100DE6C6F /* Boar.swift */,
+				CE015E971D4EB0630028A910 /* Snake.sks */,
 				CE8B8F191D496EB300DE6C6F /* Boar.sks */,
+				CE015E9B1D4EB1CD0028A910 /* Snake.swift */,
 				CEE848951D3EC61B00FF800E /* Monkey.sks */,
 				CE8B8F0E1D49455E00DE6C6F /* Tiger.sks */,
 			);
@@ -271,6 +279,7 @@
 		CE3DD9121D386B5D0009F3B0 /* assestsEmojiGameNew2 */ = {
 			isa = PBXGroup;
 			children = (
+				CE015E991D4EB0A60028A910 /* snakeEmojiGame.png */,
 				CE39819F1D4AC05400048597 /* moveRightArrowEmojiGame.png */,
 				CE39819B1D4ABF3E00048597 /* upButtonEmojiGame.png */,
 				CE8B8F1B1D496EEC00DE6C6F /* boarEmojiGame.png */,
@@ -434,11 +443,13 @@
 				CEED55671D468B4D002CA137 /* MoneyBag.sks in Resources */,
 				CE25EF6A1D34133600F2EEA4 /* Assets.xcassets in Resources */,
 				CE8B8F1C1D496EEC00DE6C6F /* boarEmojiGame.png in Resources */,
+				CE015E981D4EB0630028A910 /* Snake.sks in Resources */,
 				CE25EF681D34133600F2EEA4 /* Main.storyboard in Resources */,
 				CEE848961D3EC61B00FF800E /* Monkey.sks in Resources */,
 				CEF65B401D46C52300048AC7 /* bombEmojiGame.png in Resources */,
 				CE8B8F1A1D496EB300DE6C6F /* Boar.sks in Resources */,
 				CEED55651D468B34002CA137 /* moneyBagEmojiGame.png in Resources */,
+				CE015E9A1D4EB0A60028A910 /* snakeEmojiGame.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +479,7 @@
 				CE9571F11D3873390018442B /* Jungle.swift in Sources */,
 				CE25EFC81D36F39B00F2EEA4 /* CGPoint+Extensions.swift in Sources */,
 				CE25EFD11D36F39B00F2EEA4 /* SKTTimingFunctions.swift in Sources */,
+				CE015E9C1D4EB1CD0028A910 /* Snake.swift in Sources */,
 				CE25EFD01D36F39B00F2EEA4 /* SKTEffects.swift in Sources */,
 				CE25EFCC1D36F39B00F2EEA4 /* SKAction+SpecialEffects.swift in Sources */,
 				CE3DD9111D3860D80009F3B0 /* MSReferenceNode.swift in Sources */,

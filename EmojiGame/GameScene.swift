@@ -13,7 +13,7 @@ enum Side {
 }
 
 enum State {
-    case Patrol, Attack, Dead, None
+    case Patrol, Jump, Attack, Dead, None
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {

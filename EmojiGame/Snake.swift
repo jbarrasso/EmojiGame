@@ -10,18 +10,16 @@ import Foundation
 
 import SpriteKit
 
-class Boar: SKSpriteNode {
+class Snake: SKSpriteNode {
     
-    var state: State = .Patrol
+    var state: State = .Jump
     
-    func Patrol() {
+    func Jump() {
         
-        let moveLeft = SKAction.moveBy(CGVector(dx: Int(-100), dy: 0), duration: 1.0)
-        let turnAround = SKAction.runBlock({ self.xScale = (-1 * self.xScale) })
+        let jumpUp = SKAction.moveBy(CGVector(dx: 0, dy: 150), duration: 1.0)
         let delay = SKAction.waitForDuration(0.5)
-        let moveRight = SKAction.moveBy(CGVector(dx: 100, dy: 0), duration: 1.0)
         
-        let sequence = SKAction.sequence([moveLeft, delay, turnAround, delay, moveRight, delay,turnAround, delay])
+        let sequence = SKAction.sequence([jumpUp, delay])
         
         self.runAction(SKAction.repeatActionForever(sequence))
     }

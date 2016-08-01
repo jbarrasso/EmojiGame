@@ -93,6 +93,17 @@ class Jungle: SKScene, SKPhysicsContactDelegate/*, UIGestureRecognizerDelegate *
             }
         }
         
+        for snakes in self["snakeSpawn"] {
+            
+            let resourcePath = NSBundle.mainBundle().pathForResource("Snake", ofType: "sks")
+            let snakeRef = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
+            snakes.addChild(snakeRef)
+            
+            if let newSnake = snakeRef.children[0].children[0] as? Snake {
+                newSnake.Jump()
+            }
+        }
+        
          /* Setup jump button selection handler */
          jumpButton.selectedHandler = {
             
@@ -139,7 +150,7 @@ class Jungle: SKScene, SKPhysicsContactDelegate/*, UIGestureRecognizerDelegate *
             /* With each touch, set the camera to target mainCharacter */
             
             //this makes the slight jerk at the beginning happen
-            cameraTarget = mainCharacter
+            
         }
     }
     
@@ -168,19 +179,25 @@ class Jungle: SKScene, SKPhysicsContactDelegate/*, UIGestureRecognizerDelegate *
     }
     
     override func update(currentTime: NSTimeInterval) {
-        
-        print("\(self.mainCharacter.position.y)")
-        
+    
         /* Check we have a valid camera target to follow */
         if let cameraTarget = cameraTarget {
             
             /* Set camera position to follow target horizontally, keep vertical locked */
-            camera?.position = CGPoint(x:cameraTarget.position.x+100, y:camera!.position.y)
-    
+            camera?.position = CGPoint(x:cameraTarget.position.x + 284, y:cameraTarget.position.y + 100)
+            
             /* Clamp camera scrolling to our visible scene area only */
-            camera?.position.x.clamp(283, 6000)
+            if cameraTarget.position.x < 0 {
+                
+                camera?.position.x.clamp(284, 500)
+                
+            } else if cameraTarget.position.x > 0 {
+                
+                camera?.position.x.clamp(284, cameraTarget.position.x + 150)
+            }
+            
+            camera?.position.y.clamp(160, 500)
         }
-        
         
         let velocityX = mainCharacter.physicsBody?.velocity.dx ?? 0
         
@@ -239,6 +256,8 @@ class Jungle: SKScene, SKPhysicsContactDelegate/*, UIGestureRecognizerDelegate *
         /* Default set to false */
         if stillTouching {
             
+            cameraTarget = mainCharacter
+            
             if sideTouched == .Right {
                 
                 mainCharacter.physicsBody?.applyForce(CGVectorMake(8, 0))
@@ -258,8 +277,8 @@ class Jungle: SKScene, SKPhysicsContactDelegate/*, UIGestureRecognizerDelegate *
             /* Spawn bananas */
             let resourcePath = NSBundle.mainBundle().pathForResource("Bomb", ofType: "sks")
             
-            /* This is a reference node. To get the physics of the Banana.sks, need to 
-             access bananaRef's grandchild, which is the actual banana with physics */
+            /* This is a reference node. To get the physics of the Bomb.sks, need to
+             access bombRef's grandchild */
             let bombRef = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
             
             let triggerTime = (Int64(NSEC_PER_SEC) * Int64((arc4random() % 4) ))
@@ -284,6 +303,7 @@ class Jungle: SKScene, SKPhysicsContactDelegate/*, UIGestureRecognizerDelegate *
     func fadeOut(node: SKNode) {
     /* Fade a node's opacity to zero (invisible) then remove it from its parent (scene) */
         
+        //REFERENCE NODES DO NOT HAVE PHYSICS
         node.physicsBody?.restitution = 0
         
         node.physicsBody?.allowsRotation = false
@@ -308,34 +328,81 @@ class Jungle: SKScene, SKPhysicsContactDelegate/*, UIGestureRecognizerDelegate *
         let nodeA = contactA.node as! SKSpriteNode
         let nodeB = contactB.node as! SKSpriteNode
         
-        /* Check physics bodies */
+        /* Check physics bodies. ONLY TO BE CALLED ON REFERENCE NODES! (Use category bitmask 
+         of 2 for things that being spawned with reference nodes.*/
         if contactA.categoryBitMask == 2 || contactB.categoryBitMask == 2 {
             
-            /* Fade out & remove */
+            /* Fade out & removes the reference nodes */
             if contactA.categoryBitMask == 2 { fadeOut(nodeA.parent!.parent!) }
             if contactB.categoryBitMask == 2 { fadeOut(nodeB.parent!.parent!) }
         }
         
-        /* Player death */
+        /* Player/enemy interaction */
         if contactA.categoryBitMask == 2 && contactB.categoryBitMask == 1 || contactA.categoryBitMask == 1 && contactB.categoryBitMask == 2 {
             
-//            /* Grab reference to our SpriteKit view */
-//            let skView = self.view as SKView!
-//            
-//            /* Load Game scene */
-//            let scene = Jungle(fileNamed:"Jungle") as Jungle!
-//            
-//            /* Ensure correct aspect mode (iPhone + iPad) */
-//            scene.scaleMode = .AspectFit
-//            
-//            /* Show debug */
-//            //skView.showsPhysics = true
-//            skView.showsDrawCount = true
-//            skView.showsFPS = true
-//            
-//            /* Start game scene */
-//            skView.presentScene(scene)
+//            print("\(nodeA)")
+//            print("\(nodeB)")
+            
+            
+            if contactA.categoryBitMask == 2 {
+                
+                if contact.contactPoint.y > (self.convertPoint(nodeA.position, fromNode: nodeA.parent!)).y + nodeA.size.height/4 {
+                    
+                    print("enemy killed")
+                    nodeA.physicsBody?.contactTestBitMask = 0
+                    nodeA.physicsBody?.categoryBitMask = 0
+                    
+                } else {
+                    
+                    /* Grab reference to our SpriteKit view */
+                    let skView = self.view as SKView!
+                    
+                    /* Load Game scene */
+                    let scene = Jungle(fileNamed:"Jungle") as Jungle!
+                    
+                    /* Ensure correct aspect mode (iPhone + iPad) */
+                    scene.scaleMode = .AspectFit
+                    
+                    /* Show debug */
+                    //skView.showsPhysics = true
+                    skView.showsDrawCount = true
+                    skView.showsFPS = true
+                    
+                    /* Start game scene */
+                    skView.presentScene(scene)
+                }
+            }
+            
+            if contactB.categoryBitMask == 2 {
+                
+                if contact.contactPoint.y > (self.convertPoint(nodeB.position, fromNode: nodeB.parent!)).y + nodeB.size.height/4 {
+                    
+                    print("enemy killed")
+                    nodeB.physicsBody?.contactTestBitMask = 0
+                    nodeB.physicsBody?.categoryBitMask = 0
+                    
+                } else {
+                    
+                    /* Grab reference to our SpriteKit view */
+                    let skView = self.view as SKView!
+                    
+                    /* Load Game scene */
+                    let scene = Jungle(fileNamed:"Jungle") as Jungle!
+                    
+                    /* Ensure correct aspect mode (iPhone + iPad) */
+                    scene.scaleMode = .AspectFit
+                    
+                    /* Show debug */
+                    //skView.showsPhysics = true
+                    skView.showsDrawCount = true
+                    skView.showsFPS = true
+                    
+                    /* Start game scene */
+                    skView.presentScene(scene)
+                }
+            }
         }
+        
         
         /* Player banana/money contact */
         if contactA.categoryBitMask == 1 && contactB.categoryBitMask == 8 || contactA.categoryBitMask == 8 && contactB.categoryBitMask == 1 {
@@ -346,8 +413,8 @@ class Jungle: SKScene, SKPhysicsContactDelegate/*, UIGestureRecognizerDelegate *
             
             moneyCountLabel.text = "💲 " + String(moneyCount)
             
-            if contactA.categoryBitMask == 8 { fadeOut(nodeA) }
-            if contactB.categoryBitMask == 8 { fadeOut(nodeB) }
+            if contactA.categoryBitMask == 8 { fadeOut(nodeA.parent!.parent!) }
+            if contactB.categoryBitMask == 8 { fadeOut(nodeB.parent!.parent!) }
             
             //show an animation next to character (+5) ?
         }
