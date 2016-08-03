@@ -222,6 +222,7 @@ class Jungle: SKScene, SKPhysicsContactDelegate/*, UIGestureRecognizerDelegate *
         spawnTimer+=fixedDelta
         
         if spawnTimer >= 4 {
+            
             /* Every 4 seconds, spawn a bomb/bananaas! */
             monkeyThrow()
             spawnTimer = 0
@@ -285,18 +286,22 @@ class Jungle: SKScene, SKPhysicsContactDelegate/*, UIGestureRecognizerDelegate *
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
                 self.addChild(bombRef)
                 
-                /* Convert the monkey's coords to the main scene; place banana there */
+                /* Convert the monkey's coords to the main scene; place bomb there */
                 bombRef.position = self.convertPoint(monkey.position, fromNode: monkey.parent!)
                 
-                //Implement random throwing. bombs highest, banana medium, gem rare
-                
                 let newBomb = bombRef.children[0].children[0]
-                newBomb.runAction(SKAction.applyImpulse(CGVector(dx: 1, dy: 100), duration: 1))
-                newBomb.runAction(SKAction.applyAngularImpulse(CGFloat(0.025), duration: 2))
-                newBomb.physicsBody!.restitution = 0
+                newBomb.physicsBody?.mass = 0.01
                 
+                let divisor: Float = 100.0
+                let rand = Float((Int(arc4random() % 30)) - 15)
+                let randomXdir = CGFloat(rand/divisor)
+                
+                newBomb.runAction(SKAction.applyAngularImpulse(CGFloat(0.0003), duration: 2))
+                newBomb.runAction(SKAction.applyImpulse(CGVector(dx: randomXdir, dy: 1.8), duration: 1))
+                newBomb.runAction(SKAction.applyForce(CGVector(dx: 0, dy: 6), duration: 6))
+                
+                newBomb.physicsBody!.restitution = 0
             })
-            
         }
     }
     
@@ -417,6 +422,24 @@ class Jungle: SKScene, SKPhysicsContactDelegate/*, UIGestureRecognizerDelegate *
             if contactB.categoryBitMask == 8 { fadeOut(nodeB.parent!.parent!) }
             
             //show an animation next to character (+5) ?
+        }
+        
+        if contactA.categoryBitMask == 16 && contactB.categoryBitMask == 1 || contactA.categoryBitMask == 1 && contactB.categoryBitMask == 16 {
+            
+            if let scene = GameScene(fileNamed:"GameScene") {
+                // Configure the view.
+                let skView = self.view! 
+                skView.showsFPS = true
+                skView.showsNodeCount = true
+                
+                /* Sprite Kit applies additional optimizations to improve rendering performance */
+                skView.ignoresSiblingOrder = true
+                
+                /* Set the scale mode to scale to fit the window */
+                scene.scaleMode = .AspectFill
+                
+                skView.presentScene(scene)
+            }
         }
     }
 }

@@ -31,8 +31,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var sideTouched: Side = .None
     
-    var levelNode: SKNode!
-    
     /* Camera helpers */
     var cameraTarget: SKNode?
     
@@ -197,7 +195,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let contactA:SKPhysicsBody = contact.bodyA
         let contactB:SKPhysicsBody = contact.bodyB
         
-        if contactA.categoryBitMask == 8 && contactB.categoryBitMask == 1 || contactA.categoryBitMask == 1 && contactB.categoryBitMask == 8 {
+        if contactA.categoryBitMask == 16 && contactB.categoryBitMask == 1 || contactA.categoryBitMask == 1 && contactB.categoryBitMask == 16 {
             
             /* Grab reference to our SpriteKit view */
             let skView = self.view as SKView!
