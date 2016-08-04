@@ -345,10 +345,6 @@ class Jungle: SKScene, SKPhysicsContactDelegate/*, UIGestureRecognizerDelegate *
         /* Player/enemy interaction */
         if contactA.categoryBitMask == 2 && contactB.categoryBitMask == 1 || contactA.categoryBitMask == 1 && contactB.categoryBitMask == 2 {
             
-//            print("\(nodeA)")
-//            print("\(nodeB)")
-            
-            
             if contactA.categoryBitMask == 2 {
                 
                 if contact.contactPoint.y > (self.convertPoint(nodeA.position, fromNode: nodeA.parent!)).y + nodeA.size.height/4 {
@@ -356,6 +352,8 @@ class Jungle: SKScene, SKPhysicsContactDelegate/*, UIGestureRecognizerDelegate *
                     print("enemy killed")
                     nodeA.physicsBody?.contactTestBitMask = 0
                     nodeA.physicsBody?.categoryBitMask = 0
+                    
+                    mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 17))
                     
                 } else {
                     
@@ -385,7 +383,8 @@ class Jungle: SKScene, SKPhysicsContactDelegate/*, UIGestureRecognizerDelegate *
                     print("enemy killed")
                     nodeB.physicsBody?.contactTestBitMask = 0
                     nodeB.physicsBody?.categoryBitMask = 0
-                    
+                    mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 17))
+
                 } else {
                     
                     /* Grab reference to our SpriteKit view */
